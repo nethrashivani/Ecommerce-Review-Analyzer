@@ -1,165 +1,203 @@
-# 🛍️ Product Trust Analyzer (Chrome Extension)
+Yesss. Now that both extensions are in the same repo, the README should reflect **both projects**, not just the original Meesho extension.
 
-A browser extension that analyzes **product reviews in real time** and helps users decide whether a product is **worth buying**, **risky**, or has **mixed reviews** — using **visible user reviews + platform-wide review summaries**.
+Since your current README is already in the repo, I’d structure it like this:
 
-> Built to work with modern, React-based e-commerce websites like **Meesho**.
+````markdown
+# E-Commerce Review Analyzer
 
----
-
-##  Features
-
-### Hybrid Review Analysis (Current)
-
-The extension uses **two sources of truth**:
-
-1. **Sampled Truth (Visible Reviews)**
-
-   * Reads reviews currently rendered on the screen
-   * Automatically adapts when users click **“View all reviews”** or scroll
-   * Supports:
-
-     * English
-     * Hinglish (Hindi written in English)
-     * Emoji-based reviews (👍 ❤️ 😡 etc.)
-
-2. **Aggregate Truth (Platform Summary)**
-
-   * Extracts:
-
-     * Total number of reviews
-     * Average rating
-     * Rating distribution (Excellent / Good / Poor)
-   * Represents the sentiment of **all users**, not just the visible ones
-
-These two signals are combined to produce a **final trust decision**.
+A collection of browser extensions that analyze e-commerce product reviews and provide users with insights into review quality, sentiment, and product trustworthiness.
 
 ---
 
-## Decision Output
+## Projects
 
-The extension displays a clear and explainable verdict:
+### 1. E-Commerce Review Analyzer — Meesho
 
-* ✅ **Worth Buying**
-* ⚠️ **Mixed Reviews**
-* ❌ **Risky Product**
+A browser extension that analyzes visible product reviews on Meesho and evaluates review sentiment to estimate product trust.
 
-Along with:
+**Features**
+- Extracts visible product reviews
+- Performs sentiment analysis
+- Supports English and Hinglish reviews
+- Calculates negative-review ratio
+- Uses aggregate rating and review count
+- Generates a confidence score
+- Provides a final product verdict
+![Extension reads the two reviews in the screen](MeeshoReview.png.png)
+![Extension reads all the reviews on the screen](MeeshoReview1.png)
 
-* Number of visible reviews analyzed
-* Total reviews on the platform
-* Average rating
-* Sampled sentiment score
-* Negative review ratio
-* Confidence score (how reliable the decision is)
+**Tech Stack**
 
----
-
-## 📊 Confidence Scoring (Rule-Based)
-
-Confidence is calculated using:
-
-* Total number of reviews (crowd size)
-* Average rating stability
-* Agreement between visible reviews and aggregate ratings
-* Presence of negative sentiment
-
-This ensures the extension is:
-
-* Honest
-* Transparent
-* Explainable
+`JavaScript` `Chrome Extension` `HTML` `CSS`
 
 ---
 
-## Machine Learning (Planned / In Progress)
+### 2. TrustLens — Multi-Platform Review Analyzer
 
-Machine Learning is **intentionally not yet integrated**.
+TrustLens is a browser extension designed to analyze product reviews across multiple e-commerce platforms, including Flipkart, Amazon, Myntra, and AJIO.
 
-### Why?
+It analyzes review patterns and provides a quick trust assessment directly while browsing a product.
 
-At this stage:
+**Features**
+- Analyzes visible product reviews
+- Detects positive and negative sentiment
+- Supports English and Hinglish reviews
+- Identifies suspiciously short reviews
+- Detects reviews lacking product-specific details
+- Calculates a risk score
+- Provides a trust verdict such as:
+  - Safe to Buy
+  - Mixed Reviews
+  - Risky Product
+- Shows per-review analysis
+- Displays positive signals and red flags
+- Provides review statistics and confidence indicators
 
-* Rule-based logic provides **better explainability**
-* Easier debugging and validation
-* More control over edge cases
-* Clear understanding of important features
+**Tech Stack**
 
-### Planned ML Integration
-
-A supervised ML model will be introduced to:
-
-* Learn optimal weights for:
-
-  * Sentiment
-  * Rating
-  * Review count
-  * Negativity
-* Generalize decisions across multiple platforms
-* Output probability-based trust scores
-
-The current system is already **ML-ready**, with structured features being collected.
+`JavaScript` `Chrome Extension` `HTML` `CSS`
 
 ---
 
-##  How It Works (High-Level)
+## TrustLens Demo
 
+### Flipkart
+
+![TrustLens on Flipkart](image-1.png)
+
+### Myntra
+
+![TrustLens on Flipkart](image-2.png)
+
+> TrustLens analyzes review patterns directly on supported e-commerce product pages and presents the results through an in-browser panel.
+
+---
+
+## Project Structure
+
+```text
+Ecommerce-Review-Analyzer/
+│
+├── TrustLens/
+│   ├── icons/
+│   ├── content.js
+│   ├── manifest.json
+│   ├── panel.css
+│   ├── popup.html
+│   └── popup.js
+│
+├── content.js
+├── manifest.json
+├── popup.html
+├── popup.js
+├── background.js
+│
+└── README.md
+````
+
+The root-level files contain the original Meesho extension, while the `TrustLens/` directory contains the multi-platform TrustLens extension.
+
+---
+
+## How It Works
+
+### Review Extraction
+
+The extension extracts reviews visible on the current product page.
+
+### Sentiment Analysis
+
+Reviews are analyzed using predefined positive and negative vocabulary, including English and Hinglish terms, along with emoji-based sentiment signals.
+
+### Review Quality Signals
+
+TrustLens looks for patterns such as:
+
+* Product-specific details
+* Review length
+* Sentiment
+* Language diversity
+* Suspiciously short feedback
+
+### Trust Assessment
+
+The extracted signals are aggregated to generate:
+
+**Risk Score → Review Statistics → Positive Signals / Red Flags → Final Verdict**
+
+---
+
+## Installation
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/nethrashivani/Ecommerce-Review-Analyzer.git
 ```
-User opens product page
-        ↓
-User scrolls / opens reviews
-        ↓
-Extension reads:
-  - Visible reviews (sample)
-  - Platform summary (aggregate)
-        ↓
-Sentiment + confidence analysis
-        ↓
-Trust decision shown in popup
+
+2. Open Chrome and navigate to:
+
+```text
+chrome://extensions
 ```
 
----
+3. Enable **Developer mode**.
 
-##  Tech Stack
+4. Click **Load unpacked**.
 
-* JavaScript (ES6)
-* Chrome Extensions API (Manifest v3)
-* DOM parsing & analysis
-* Rule-based NLP (emoji + Hinglish support)
+5. For the original Meesho extension, select the repository folder.
 
----
+6. For TrustLens, select:
 
-## Limitations (Known & Accepted)
+```text
+TrustLens/
+```
 
-* The extension reads **only reviews rendered in the DOM**
-* Some platforms use **virtualized lists**, limiting simultaneous access to all reviews
-* No backend scraping (to respect platform ToS)
-
-These limitations are handled using **sampling + aggregate summaries**, similar to real-world trust systems.
+7. Open a supported e-commerce product page and launch the extension.
 
 ---
 
-## 🌱 Future Enhancements
+## Technologies Used
 
-* 🤖 ML-based trust prediction
-* 📊 Visual confidence meter UI
-* 🌍 Multi-platform support (Amazon, Flipkart)
-* 🔄 Automatic re-analysis on scroll
-* 📈 Dataset export for ML training
-
----
-
-## 📌 Project Status
-
-🟢 **Active Development**
-🧠 **Machine Learning: In Progress**
-🚀 **Core functionality complete and stable**
+* JavaScript
+* HTML
+* CSS
+* Chrome Extension APIs
+* DOM Parsing
+* Rule-based Sentiment Analysis
+* Review Pattern Analysis
 
 ---
 
-## 🙌 Motivation
+## Future Improvements
 
-Online reviews can be misleading, fake, or overwhelming.
-This project aims to provide a **clear, explainable trust signal** to help users make smarter purchasing decisions — without reading hundreds of reviews.
+* Machine-learning-based review classification
+* Improved multilingual sentiment analysis
+* Fake-review detection using behavioral patterns
+* Support for additional e-commerce platforms
+* More advanced review quality scoring
+* Historical product trust tracking
 
 ---
+
+## Author
+
+**Nethra Shivani**
+
+GitHub:
+[https://github.com/nethrashivani](https://github.com/nethrashivani)
+
+````
+
+### BUT — one thing before you paste this
+
+Your screenshots aren't currently inside the repo. So first create:
+
+```text
+TrustLens/
+└── screenshots/
+    ├── flipkart.png
+    └── myntra.png
+````
+
 
