@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "TrustLens AI",
+  "version": "5.0.0",
+  "description": "Fake review detector for Amazon, Flipkart & Meesho. DOM-aware review analyzer. Reads ratings, dates & verified status.",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": [
+    "https://www.amazon.in/*",
+    "https://www.amazon.com/*",
+    "https://www.flipkart.com/*",
+    "https://www.meesho.com/*",
+    "https://www.myntra.com/*",
+    "https://www.ajio.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.amazon.in/*",
+        "https://www.amazon.com/*",
+        "https://www.flipkart.com/*",
+        "https://www.meesho.com/*",
+    "https://www.myntra.com/*",
+    "https://www.ajio.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["panel.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

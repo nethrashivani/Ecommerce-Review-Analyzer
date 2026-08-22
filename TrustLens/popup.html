@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <style>
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { width:300px; background:#ffffff; color:#1e293b; font-family:'Segoe UI',system-ui,sans-serif; font-size:13px; }
+
+    .header {
+      background:#f8fafc; padding:14px 16px;
+      border-bottom:1px solid #e2e8f0;
+      display:flex; align-items:center; gap:10px;
+    }
+    .dot { width:9px; height:9px; border-radius:50%; background:#3b82f6; box-shadow:0 0 6px #3b82f6aa; }
+    .brand { font-size:16px; font-weight:800; color:#0f172a; }
+    .sub { font-size:10px; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; font-weight:600; }
+
+    .body { padding:14px; }
+
+    .free-badge {
+      display:flex; align-items:center; gap:9px;
+      padding:10px 12px; background:#f0fdf4;
+      border:1px solid #bbf7d0; border-radius:10px; margin-bottom:12px;
+    }
+    .free-dot { width:8px; height:8px; border-radius:50%; background:#16a34a; flex-shrink:0; }
+    .free-text { font-size:11.5px; color:#15803d; }
+    .free-text strong { display:block; color:#166534; font-weight:700; font-size:12px; }
+
+    .btn {
+      width:100%; padding:12px; margin-bottom:12px;
+      background:linear-gradient(135deg,#3b82f6,#2563eb);
+      border:none; border-radius:10px; color:#fff;
+      font-size:14px; font-weight:700; cursor:pointer;
+      font-family:inherit; transition:.15s;
+      box-shadow: 0 2px 8px #3b82f640;
+    }
+    .btn:hover { opacity:.92; transform:translateY(-1px); box-shadow:0 4px 12px #3b82f650; }
+    .btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+
+    .chips { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:12px; }
+    .chip {
+      padding:3px 10px; border-radius:99px; font-size:10.5px;
+      font-weight:700; border:1.5px solid;
+    }
+    .amazon   { color:#b45309; background:#fffbeb; border-color:#fde68a; }
+    .flipkart { color:#1d4ed8; background:#eff6ff; border-color:#bfdbfe; }
+    .meesho   { color:#be185d; background:#fdf2f8; border-color:#f9a8d4; }
+    .myntra   { color:#be123c; background:#fff1f2; border-color:#fecdd3; }
+    .ajio     { color:#9f1239; background:#fff1f2; border-color:#fecdd3; }
+
+    .info {
+      font-size:11px; color:#94a3b8; text-align:center;
+      line-height:1.7; padding:4px 0;
+    }
+
+    .not-supported {
+      display:none; padding:20px 16px; text-align:center;
+    }
+    .not-supported .icon { font-size:28px; margin-bottom:9px; }
+    .not-supported p { font-size:12.5px; color:#64748b; line-height:1.6; }
+    .not-supported strong { color:#334155; }
+
+    .divider { height:1px; background:#f1f5f9; margin:4px 0 12px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="dot"></div>
+    <div>
+      <div class="brand">TrustLens AI</div>
+      <div class="sub">Fake Review Detector</div>
+    </div>
+  </div>
+
+  <div class="body" id="main">
+    <div class="free-badge">
+      <div class="free-dot"></div>
+      <div class="free-text">
+        <strong>100% Free — No API Key!</strong>
+        Works offline · No sign-up needed
+      </div>
+    </div>
+
+    <div class="chips">
+      <span class="chip amazon">Amazon</span>
+      <span class="chip flipkart">Flipkart</span>
+      <span class="chip meesho">Meesho</span>
+      <span class="chip myntra">Myntra</span>
+      <span class="chip ajio">Ajio</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <button class="btn" id="analyze-btn">🔍 &nbsp;Analyze Reviews</button>
+
+    <div class="info">
+      English · Hindi · Tamil · Emojis<br/>
+      Reads ratings, dates &amp; verified status
+    </div>
+  </div>
+
+  <div class="not-supported" id="not-supported">
+    <div class="icon">🚫</div>
+    <p>Please open a product page on<br/>
+    <strong>Amazon</strong>, <strong>Flipkart</strong>, <strong>Meesho</strong>,
+    <strong>Myntra</strong> or <strong>Ajio</strong>.</p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
