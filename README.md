@@ -188,16 +188,3 @@ GitHub:
 [https://github.com/nethrashivani](https://github.com/nethrashivani)
 
 ````
-
-### BUT — one thing before you paste this
-
-Your screenshots aren't currently inside the repo. So first create:
-
-```text
-TrustLens/
-└── screenshots/
-    ├── flipkart.png
-    └── myntra.png
-````
-
-
